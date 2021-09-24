@@ -1,14 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-// import './bootstrap/dist/'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './styles/styles.scss';
+import MeetingsProvider from './context/MeetingsContext';
+import AuthProvider from './context/AuthContext';
 
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <MeetingsProvider>
+      <AuthProvider>
+        <App/>
+      </AuthProvider>
+    </MeetingsProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

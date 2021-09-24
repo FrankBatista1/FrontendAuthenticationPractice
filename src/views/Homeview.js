@@ -1,22 +1,18 @@
-import axios from 'axios'
-import { useEffect,useState } from 'react';
-import '../styles/sytle.scss'
 
-const Homeview = () => {
-  const [meetings, setMeetings] = useState([])
-  const apiUrl = 'http://localhost:5000/api'
+import { useContext } from 'react';
+import { MeetingsContext } from '../context/MeetingsContext';
 
-useEffect(() => {
-getMeetings();
-}, [])
+const HomeView = () =>{ 
+  const { meetings } = useContext(MeetingsContext)
 
-  const getMeetings = async () => {
-    const response = await axios.get(`${apiUrl}/meetings`);
-    setMeetings(response.data)
-  }
   return (
-   meetings.map(meeting => <h1>{meeting.concept}</h1>)
-  )
+    <div className="home mt-4">
+      <h2>Meetings</h2>
+      {meetings && meetings.map(meeting => (
+        <h4 key={meeting._id}>{meeting.concept}</h4>
+      ))}
+    </div>
+  );
 }
 
-export default Homeview
+export default HomeView
